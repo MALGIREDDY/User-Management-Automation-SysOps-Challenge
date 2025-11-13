@@ -157,10 +157,6 @@ Feel free to open issues, suggest improvements, or submit pull requests.
 
 <hr/>
 
-<h1><font color="blue"><b> License</b></font></h1>
-
-This project is open-source and available under the **MIT License**.
-
 <hr/>
 
 <h1><font color="blue"><b> Author</b></font></h1>
@@ -168,6 +164,7 @@ This project is open-source and available under the **MIT License**.
 <b>Created by: M SAIDEEP</b>  
 DevOps / SysOps Automation Projects  
 GitHub Profile: https://github.com/MALGIREDDY
+
 
 
 
