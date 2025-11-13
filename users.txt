@@ -1,4 +1,5 @@
-# Username;Groups
 light; sudo,dev,www-data
-siyoni; sudo
-manoj; dev,www-data
+rahul; sudo
+saideep; dev,www-data
+
+

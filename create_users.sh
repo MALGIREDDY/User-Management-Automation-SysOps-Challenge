@@ -1,122 +1,95 @@
 #!/bin/bash
-#===========================================================
-# Script Name: create_users.sh
-# Description: Automates user account creation and management.
-# Author: M SAIDEEP
-#===========================================================
 
-#---------------------------#
-#       CONFIG PATHS        #
-#---------------------------#
+# User Management Automation Script
+
 INPUT_FILE="$1"
 LOG_FILE="/var/log/user_management.log"
-PASSWORD_FILE="/var/secure/user_passwords.txt"
+PASS_FILE="/var/secure/user_passwords.txt"
 
-# Ensure secure directories exist
 mkdir -p /var/secure
-touch "$LOG_FILE" "$PASSWORD_FILE"
 
-# Set strict permissions
-chmod 600 "$LOG_FILE" "$PASSWORD_FILE"
+touch "$LOG_FILE"
+touch "$PASS_FILE"
 
-#---------------------------#
-#  Function: log messages   #
-#---------------------------#
+chmod 600 "$LOG_FILE" "$PASS_FILE"
+
 log() {
     echo "$(date '+%Y-%m-%d %H:%M:%S') | $1" >> "$LOG_FILE"
 }
 
-#---------------------------#
-# Validate input file       #
-#---------------------------#
-if [[ -z "$INPUT_FILE" ]]; then
-    echo "Usage: $0 <userlist.txt>"
-    exit 1
-fi
-
 if [[ ! -f "$INPUT_FILE" ]]; then
-    echo "Error: Input file '$INPUT_FILE' not found!"
+    echo "❌ Input file not found!"
     exit 1
 fi
 
-#---------------------------#
-# Main Processing Loop      #
-#---------------------------#
 while IFS= read -r line; do
+    line=$(echo "$line" | tr -d '\r' | xargs)
 
-    # Skip empty lines or comments
-    [[ -z "$line" || "$line" =~ ^# ]] && continue
+    [[ -z "$line" || "$line" == \#* ]] && continue
 
-    # Remove extra spaces
-    line=$(echo "$line" | tr -d '[:space:]')
+    IFS=';' read -r user groups <<< "$line"
 
-    # Split user and groups
-    username=$(echo "$line" | cut -d';' -f1)
-    groups=$(echo "$line" | cut -d';' -f2)
+    # CLEAN WINDOWS CRLF + SPACES
+    user=$(echo "$user" | tr -d '\r' | xargs)
+    groups=$(echo "$groups" | tr -d '\r' | xargs)
 
-    if [[ -z "$username" ]]; then
-        log "SKIPPED: Invalid line format -> $line"
-        continue
+    echo ""
+    echo "Processing user: $user"
+    log "Processing user: $user"
+
+    # Create primary group
+    if ! getent group "$user" >/dev/null 2>&1; then
+        echo " -> Creating primary group: $user"
+        groupadd "$user"
+        log "Created primary group $user"
+    else
+        echo " -> Primary group already exists"
+        log "Primary group exists"
     fi
 
-    #---------------------------#
-    #   Create user and groups  #
-    #---------------------------#
-    # Create groups if not exist
-    IFS=',' read -ra GROUP_ARRAY <<< "$groups"
-    for grp in "${GROUP_ARRAY[@]}"; do
-        if [[ -n "$grp" ]]; then
-            if ! getent group "$grp" > /dev/null; then
-                groupadd "$grp"
-                log "Created group: $grp"
-            fi
+    # Create user
+    if ! id "$user" >/dev/null 2>&1; then
+        echo " -> Creating user: $user"
+        useradd -m -g "$user" -s /bin/bash "$user"
+        log "User $user created"
+    else
+        echo " -> User already exists"
+        log "User exists"
+    fi
+
+    # Supplementary groups
+    IFS=',' read -ra grp_array <<< "$groups"
+
+    for g in "${grp_array[@]}"; do
+        g=$(echo "$g" | tr -d '\r' | xargs)   # CLEAN hidden chars
+
+        if ! getent group "$g" >/dev/null 2>&1; then
+            echo " -> Creating group: $g"
+            groupadd "$g"
+            log "Group $g created"
         fi
+        
+        echo " -> Adding $user to group: $g"
+        usermod -a -G "$g" "$user"
+        log "Added $user to $g"
     done
 
-    # Check if user already exists
-    if id "$username" &>/dev/null; then
-        log "User '$username' already exists. Skipping user creation."
-    else
-        # Create user with primary group same as username
-        if ! getent group "$username" > /dev/null; then
-            groupadd "$username"
-            log "Created primary group: $username"
-        fi
+    # Home directory
+    home_dir="/home/$user"
+    mkdir -p "$home_dir"
+    chown "$user:$user" "$home_dir"
+    chmod 700 "$home_dir"
 
-        useradd -m -g "$username" -G "$groups" -s /bin/bash "$username"
-        if [[ $? -eq 0 ]]; then
-            log "User '$username' created successfully."
-        else
-            log "ERROR: Failed to create user '$username'."
-            continue
-        fi
-    fi
-
-    #---------------------------#
-    #   Set password            #
-    #---------------------------#
+    # Password
     password=$(openssl rand -base64 12)
-    echo "$username:$password" | chpasswd
-    echo "$username:$password" >> "$PASSWORD_FILE"
-    log "Password set for user '$username'."
+    echo "$user:$password" | chpasswd
 
-    #---------------------------#
-    #   Set home permissions    #
-    #---------------------------#
-    home_dir="/home/$username"
-    if [[ -d "$home_dir" ]]; then
-        chown "$username:$username" "$home_dir"
-        chmod 700 "$home_dir"
-        log "Permissions set for $home_dir"
-    else
-        mkdir -p "$home_dir"
-        chown "$username:$username" "$home_dir"
-        chmod 700 "$home_dir"
-        log "Home directory created for '$username'."
-    fi
+    echo "$user:$password" >> "$PASS_FILE"
+    log "Password generated for $user"
 
 done < "$INPUT_FILE"
 
-log "User management process completed successfully."
+echo ""
 echo "✅ All operations logged in $LOG_FILE"
-echo "✅ User credentials stored securely in $PASSWORD_FILE"
+echo "✅ User credentials stor
+

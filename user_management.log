@@ -1,0 +1,171 @@
+2025-11-13 04:34:16 | Created group: dev
+2025-11-13 04:34:16 | Created primary group: light
+2025-11-13 04:34:16 | User 'light' created successfully.
+2025-11-13 04:34:17 | Password set for user 'light'.
+2025-11-13 04:34:17 | Permissions set for /home/light
+2025-11-13 04:34:17 | Created primary group: siyoni
+2025-11-13 04:34:17 | User 'siyoni' created successfully.
+2025-11-13 04:34:17 | Password set for user 'siyoni'.
+2025-11-13 04:34:17 | Permissions set for /home/siyoni
+2025-11-13 04:34:17 | Created primary group: manoj
+2025-11-13 04:34:17 | User 'manoj' created successfully.
+2025-11-13 04:34:17 | Password set for user 'manoj'.
+2025-11-13 04:34:17 | Permissions set for /home/manoj
+2025-11-13 04:34:17 | User management process completed successfully.
+2025-11-13 05:20:52 | Created group: echo"Processinguser:$user"
+2025-11-13 05:20:52 | Created primary group: echo"Processinguser:$user"
+2025-11-13 05:20:53 | ERROR: Failed to create user 'echo"Processinguser:$user"'.
+2025-11-13 05:20:53 | Created group: echo"->Creatingprimarygroup:$user"
+2025-11-13 05:20:53 | Created primary group: echo"->Creatingprimarygroup:$user"
+2025-11-13 05:20:53 | ERROR: Failed to create user 'echo"->Creatingprimarygroup:$user"'.
+2025-11-13 05:20:53 | Created group: echo"->Creatinguser:$user"
+2025-11-13 05:20:53 | Created primary group: echo"->Creatinguser:$user"
+2025-11-13 05:20:53 | ERROR: Failed to create user 'echo"->Creatinguser:$user"'.
+2025-11-13 05:20:53 | Created group: echo"->Addingtogroups:$groups"
+2025-11-13 05:20:53 | Created primary group: echo"->Addingtogroups:$groups"
+2025-11-13 05:20:53 | ERROR: Failed to create user 'echo"->Addingtogroups:$groups"'.
+2025-11-13 05:20:53 | Created group: ...
+2025-11-13 05:20:53 | User '...' created successfully.
+2025-11-13 05:20:53 | Password set for user '...'.
+2025-11-13 05:20:53 | Permissions set for /home/...
+2025-11-13 05:20:53 | User management process completed successfully.
+2025-11-13 05:22:38 | Processing user: echo Processing user: $user
+2025-11-13 05:22:38 | Created primary group echo Processing user: $user
+2025-11-13 05:22:38 | Created user echo Processing user: $user
+2025-11-13 05:22:38 | Password generated for echo Processing user: $user
+2025-11-13 05:22:38 | Processing user: echo -> Creating primary group: $user
+2025-11-13 05:22:38 | Created primary group echo -> Creating primary group: $user
+2025-11-13 05:22:38 | Created user echo -> Creating primary group: $user
+2025-11-13 05:22:38 | Password generated for echo -> Creating primary group: $user
+2025-11-13 05:22:38 | Processing user: echo -> Creating user: $user
+2025-11-13 05:22:38 | Created primary group echo -> Creating user: $user
+2025-11-13 05:22:38 | Created user echo -> Creating user: $user
+2025-11-13 05:22:38 | Password generated for echo -> Creating user: $user
+2025-11-13 05:22:38 | Processing user: echo -> Adding to groups: $groups
+2025-11-13 05:22:38 | Created primary group echo -> Adding to groups: $groups
+2025-11-13 05:22:38 | Created user echo -> Adding to groups: $groups
+2025-11-13 05:22:38 | Password generated for echo -> Adding to groups: $groups
+2025-11-13 05:22:38 | Processing user: ...
+2025-11-13 05:22:38 | Created primary group ...
+2025-11-13 05:22:38 | Created user ...
+2025-11-13 05:22:39 | Password generated for ...
+2025-11-13 05:24:36 | Processing user: light
+2025-11-13 05:24:36 | Primary group light exists
+2025-11-13 05:24:36 | User light exists
+2025-11-13 05:24:36 | Added light to sudo
+2025-11-13 05:24:36 | Added light to dev
+2025-11-13 05:24:36 | Group www-data created
+2025-11-13 05:24:36 | Added light to www-data
+2025-11-13 05:24:36 | Password generated for light
+2025-11-13 05:24:37 | Processing user: siyoni
+2025-11-13 05:24:37 | Primary group siyoni exists
+2025-11-13 05:24:37 | User siyoni exists
+2025-11-13 05:24:37 | Group sudo created
+2025-11-13 05:24:37 | Added siyoni to sudo
+2025-11-13 05:24:37 | Password generated for siyoni
+2025-11-13 05:24:37 | Processing user: manoj
+2025-11-13 05:24:37 | Primary group manoj exists
+2025-11-13 05:24:37 | User manoj exists
+2025-11-13 05:24:37 | Added manoj to dev
+2025-11-13 05:24:37 | Group www-data created
+2025-11-13 05:24:37 | Added manoj to www-data
+2025-11-13 05:24:37 | Password generated for manoj
+2025-11-13 05:24:37 | Processing user: light
+2025-11-13 05:24:37 | Primary group light exists
+2025-11-13 05:24:37 | User light exists
+2025-11-13 05:24:37 | Added light to sudo
+2025-11-13 05:24:37 | Added light to dev
+2025-11-13 05:24:37 | Group www-data created
+2025-11-13 05:24:37 | Added light to www-data
+2025-11-13 05:24:37 | Password generated for light
+2025-11-13 05:24:37 | Processing user: siyoni
+2025-11-13 05:24:37 | Primary group siyoni exists
+2025-11-13 05:24:37 | User siyoni exists
+2025-11-13 05:24:37 | Group sudo created
+2025-11-13 05:24:38 | Added siyoni to sudo
+2025-11-13 05:24:38 | Password generated for siyoni
+2025-11-13 05:24:38 | Processing user: manoj
+2025-11-13 05:24:38 | Primary group manoj exists
+2025-11-13 05:24:38 | User manoj exists
+2025-11-13 05:24:38 | Added manoj to dev
+2025-11-13 05:24:38 | Group www-data created
+2025-11-13 05:24:38 | Added manoj to www-data
+2025-11-13 05:24:38 | Password generated for manoj
+2025-11-13 05:27:10 | Processing user: light
+2025-11-13 05:27:10 | Primary group light exists
+2025-11-13 05:27:10 | User light exists
+2025-11-13 05:27:10 | Added light to sudo
+2025-11-13 05:27:10 | Added light to dev
+2025-11-13 05:27:10 | Group www-data created
+2025-11-13 05:27:10 | Added light to www-data
+2025-11-13 05:27:10 | Password generated for light
+2025-11-13 05:27:10 | Processing user: siyoni
+2025-11-13 05:27:10 | Primary group siyoni exists
+2025-11-13 05:27:11 | User siyoni exists
+2025-11-13 05:27:11 | Group sudo created
+2025-11-13 05:27:11 | Added siyoni to sudo
+2025-11-13 05:27:11 | Password generated for siyoni
+2025-11-13 05:27:11 | Processing user: manoj
+2025-11-13 05:27:11 | Primary group manoj exists
+2025-11-13 05:27:11 | User manoj exists
+2025-11-13 05:27:11 | Added manoj to dev
+2025-11-13 05:27:11 | Group www-data created
+2025-11-13 05:27:11 | Added manoj to www-data
+2025-11-13 05:27:11 | Password generated for manoj
+2025-11-13 05:29:31 | Processing user: light
+2025-11-13 05:29:31 | Primary group light exists
+2025-11-13 05:29:31 | User light exists
+2025-11-13 05:29:31 | Added light to sudo
+2025-11-13 05:29:31 | Added light to dev
+2025-11-13 05:29:31 | Group www-data created
+2025-11-13 05:29:31 | Added light to www-data
+2025-11-13 05:29:31 | Password generated for light
+2025-11-13 05:29:31 | Processing user: siyoni
+2025-11-13 05:29:31 | Primary group siyoni exists
+2025-11-13 05:29:31 | User siyoni exists
+2025-11-13 05:29:31 | Group sudo created
+2025-11-13 05:29:31 | Added siyoni to sudo
+2025-11-13 05:29:31 | Password generated for siyoni
+2025-11-13 05:29:31 | Processing user: manoj
+2025-11-13 05:29:31 | Primary group manoj exists
+2025-11-13 05:29:32 | User manoj exists
+2025-11-13 05:29:32 | Added manoj to dev
+2025-11-13 05:29:32 | Group www-data created
+2025-11-13 05:29:32 | Added manoj to www-data
+2025-11-13 05:29:32 | Password generated for manoj
+2025-11-13 05:36:33 | Processing user: light
+2025-11-13 05:36:33 | Primary group exists
+2025-11-13 05:36:34 | User exists
+2025-11-13 05:36:34 | Added light to sudo
+2025-11-13 05:36:34 | Added light to dev
+2025-11-13 05:36:34 | Added light to www-data
+2025-11-13 05:36:34 | Password generated for light
+2025-11-13 05:36:34 | Processing user: siyoni
+2025-11-13 05:36:34 | Primary group exists
+2025-11-13 05:36:34 | User exists
+2025-11-13 05:36:34 | Added siyoni to sudo
+2025-11-13 05:36:34 | Password generated for siyoni
+2025-11-13 05:36:34 | Processing user: manoj
+2025-11-13 05:36:34 | Primary group exists
+2025-11-13 05:36:34 | User exists
+2025-11-13 05:36:34 | Added manoj to dev
+2025-11-13 05:36:34 | Added manoj to www-data
+2025-11-13 05:36:34 | Password generated for manoj
+2025-11-13 05:42:47 | Processing user: light
+2025-11-13 05:42:47 | Primary group exists
+2025-11-13 05:42:47 | User exists
+2025-11-13 05:42:47 | Added light to sudo
+2025-11-13 05:42:48 | Added light to dev
+2025-11-13 05:42:48 | Added light to www-data
+2025-11-13 05:42:48 | Password generated for light
+2025-11-13 05:42:48 | Processing user: siyoni
+2025-11-13 05:42:48 | Primary group exists
+2025-11-13 05:42:48 | User exists
+2025-11-13 05:42:48 | Added siyoni to sudo
+2025-11-13 05:42:48 | Password generated for siyoni
+2025-11-13 05:42:48 | Processing user: manoj
+2025-11-13 05:42:48 | Primary group exists
+2025-11-13 05:42:48 | User exists
+2025-11-13 05:42:48 | Added manoj to dev
+2025-11-13 05:42:48 | Added manoj to www-data
+2025-11-13 05:42:48 | Password generated for manoj
