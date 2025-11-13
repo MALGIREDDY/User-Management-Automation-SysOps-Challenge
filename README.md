@@ -1,3 +1,4 @@
+ HEAD
 #  Linux User Management Automation (Shell Script)
 
 This project automates the onboarding of new users on a Linux system using a
@@ -117,3 +118,6 @@ For DevOps / SysOps learning and automation practice.
 
 yaml
 
+=======
+# User-Management-Automation-SysOps-Cha
+ dfb35fc2cfdebfa3c472be5b3029f123573e57cd
