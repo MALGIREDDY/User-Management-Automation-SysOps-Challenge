@@ -162,8 +162,9 @@ Feel free to open issues, suggest improvements, or submit pull requests.
 <h1><font color="blue"><b> Author</b></font></h1>
 
 <b>Created by: M SAIDEEP</b>  
-DevOps / SysOps Automation Projects  
+User Management Automation (SysOps Challenge) 
 GitHub Profile: https://github.com/MALGIREDDY
+
 
 
 
