@@ -1,122 +1,132 @@
-#  Linux User Management Automation (Shell Script)
+Linux User Management Automation (Shell Script)
 
-This project automates the onboarding of new users on a Linux system using a
-shell script. It reads a configuration file containing usernames and group
-assignments, then automatically creates users, groups, home directories,
-secure passwords, and log files.
+This project automates onboarding of new users on a Linux system using a single shell script.
+It reads a configuration file containing usernames and group assignments, then automatically:
 
----
+Creates users & primary groups
 
-##  Features
+Adds users to additional groups
 
-- Reads a user list from a `.txt` file  
-- Creates users and primary groups  
-- Adds users to additional groups  
-- Generates secure random passwords  
-- Creates home directories with correct permissions  
-- Saves credentials securely in `/var/secure/user_passwords.txt`  
-- Logs all activity to `/var/log/user_management.log`  
-- Handles existing users/groups gracefully  
-- Skips invalid or commented lines  
-- Provides clean success/error messages  
+Creates secure passwords
 
----
+Generates home directories
 
-##  Input File Format
+Logs all activity
 
-Your input file (`users.txt`) should look like:
+Stores credentials securely
 
+This is ideal for DevOps / SysOps automation, especially for multiple-user onboarding.
+
+🔥 Features
+
+✔ Reads a user list from a users.txt file
+
+✔ Creates users and primary groups
+
+✔ Adds users to supplementary groups
+
+✔ Generates secure random passwords
+
+✔ Creates /home/<user> with secure permissions
+
+✔ Saves passwords in /var/secure/user_passwords.txt
+
+✔ Logs operations in /var/log/user_management.log
+
+✔ Skips invalid or commented lines
+
+✔ Handles existing users/groups safely
+
+✔ Clean, user-friendly output
+
+📄 Input File Format (users.txt)
 light; sudo,dev,www-data
 siyoni; sudo
 manoj; dev,www-data
 
-makefile
-Copy code
+Rules
 
-Format:
-username; group1,group2,group3
+Format → username; group1,group2,group3
 
-yaml
-Copy code
+Lines starting with # are ignored
 
-- Lines beginning with `#` are skipped  
-- Spaces are ignored  
+Spaces are ignored automatically
 
----
+⚙️ How It Works (High-Level Logic)
 
-##  How It Works (High-Level Logic)
+Read input file line-by-line
 
-1. Read input file line-by-line  
-2. Skip blank lines and comments  
-3. Extract username and group list  
-4. Create primary group (same as username) if missing  
-5. Create or update supplementary groups  
-6. Create user account  
-7. Create and configure `/home/<username>`  
-8. Generate 12-character random password using `openssl rand -base64 12`  
-9. Set password using `chpasswd`  
-10. Log operations to `/var/log/user_management.log`  
-11. Store credentials securely (`chmod 600`)  
+Ignore empty lines & comments
 
----
+Extract username and group list
 
-##  Running the Script
+Ensure primary group exists
 
-### 1 Make the script executable:
-```bash
+Create user account if missing
+
+Add user to supplementary groups
+
+Create /home/<username> with 700 permissions
+
+Generate secure password:
+
+openssl rand -base64 12
+
+
+Apply password using chpasswd
+
+Log all operations
+
+Save credentials under /var/secure/ with 600 permissions
+
+🏃 Running the Script
+Make executable
 chmod +x create_users.sh
-2 Run the script with sudo:
-bash
-Copy code
-sudo bash create_users.sh users.txt
-3 Output files:
-Location	Description
-/var/log/user_management.log	Logs of all operations
-/var/secure/user_passwords.txt	Secure storage of generated passwords
 
- Project Structure
-sql
-Copy code
+Run with sudo
+sudo bash create_users.sh users.txt
+
+📁 Project Structure
 linux-user-management/
 │── create_users.sh
 │── users.txt
 │── README.md
- Security Considerations
-Password file has strict 600 permissions
 
-Script uses sudo for restricted operations
+📜 Generated Files
+Location	Description
+/var/log/user_management.log	All activity logs
+/var/secure/user_passwords.txt	Secure password storage
+🔐 Security Considerations
 
-Passwords never appear in terminal output
+Password file permission: chmod 600
+
+No passwords printed on screen
+
+No hardcoded passwords
+
+Home directories use strict 700 mode
 
 Sensitive files stored under /var/secure/
 
-Users get home directories with 700 permissions
+Requires sudo privileges
 
-No plain-text hardcoded passwords
+🛠 Technologies Used
 
- Technologies Used
-Bash/Shell Scripting
+Bash / Shell Scripting
 
-Linux User & Group Management
+Linux User Management
 
-WSL Ubuntu (if on Windows)
+WSL Ubuntu (optional)
 
-openssl for secure password generation
+openssl for password generation
 
-Example Log Output
-text
-Copy code
+📝 Example Log Output
 2025-11-13 10:28:11 | Created user: light
 2025-11-13 10:28:11 | Added to groups: sudo,dev,www-data
 2025-11-13 10:28:11 | Password generated and stored securely
 2025-11-13 10:28:11 | Home directory created: /home/light
 
- Author
-Created by [M SAIDEEP]
-For DevOps / SysOps learning and automation practice.
+👨‍💻 Author
 
-yaml
-
-=======
-# User-Management-Automation-SysOps-Cha
- dfb35fc2cfdebfa3c472be5b3029f123573e57cd
+Created by: M SAIDEEP
+DevOps / SysOps Automation Projects
