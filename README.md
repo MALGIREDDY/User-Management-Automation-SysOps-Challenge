@@ -1,4 +1,3 @@
- HEAD
 #  Linux User Management Automation (Shell Script)
 
 This project automates the onboarding of new users on a Linux system using a
