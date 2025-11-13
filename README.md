@@ -1,4 +1,4 @@
-<h1><b>* Linux User Management Automation (Shell Script)*</b></h1>
+<h1 style="color:#1E90FF;"><b>Linux User Management Automation (Shell Script)</b></h1>
 
 This project automates onboarding of new users on a Linux system using a single shell script.
 It reads a configuration file containing usernames and group assignments, then automatically:
@@ -129,6 +129,7 @@ linux-user-management/
 
 <b>M SAIDEEP</b>  
 DevOps / SysOps Automation Practice
+
 
 
 
