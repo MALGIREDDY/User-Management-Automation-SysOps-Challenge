@@ -74,7 +74,7 @@ rahul; dev,www-data
 
 <hr/>
 
-## 🏗️ Architecture Diagram
+##  Architecture Diagram
 
 ```
 users.txt
@@ -168,6 +168,7 @@ This project is open-source and available under the **MIT License**.
 <b>Created by: M SAIDEEP</b>  
 DevOps / SysOps Automation Projects  
 GitHub Profile: https://github.com/MALGIREDDY
+
 
 
 
