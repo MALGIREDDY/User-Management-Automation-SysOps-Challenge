@@ -46,8 +46,8 @@ It reads data from a config file, creates users, groups, secure passwords, home 
 
 <pre>
 light; sudo,dev,www-data
-siyoni; sudo
-manoj; dev,www-data
+saideep; sudo
+rahul; dev,www-data
 </pre>
 
 <b>Rules:</b>  
@@ -168,6 +168,7 @@ This project is open-source and available under the **MIT License**.
 <b>Created by: M SAIDEEP</b>  
 DevOps / SysOps Automation Projects  
 GitHub Profile: https://github.com/MALGIREDDY
+
 
 
 
