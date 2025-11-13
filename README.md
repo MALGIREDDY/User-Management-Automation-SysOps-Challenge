@@ -1,4 +1,4 @@
-<h1><b>🚀 Linux User Management Automation (Shell Script)</b></h1>
+<h1><b>**** Linux User Management Automation (Shell Script)****</b></h1>
 
 This project automates onboarding of new users on a Linux system using a single shell script.
 It reads a configuration file containing usernames and group assignments, then automatically:
@@ -14,26 +14,26 @@ This is ideal for <b>DevOps / SysOps automation</b>.
 
 <hr/>
 
-<h1><b>🔥 Features</b></h1>
+<h1><b> Features</b></h1>
 
-✔ Reads a user list from a users.txt file  
-✔ Creates users and primary groups  
-✔ Adds users to supplementary groups  
-✔ Generates secure random passwords  
-✔ Creates /home/&lt;user&gt; with correct permissions  
-✔ Saves passwords securely  
-✔ Logs all operations  
-✔ Skips invalid/comment lines  
-✔ Handles existing users/groups safely  
+- Reads a user list from a users.txt file  
+- Creates users and primary groups  
+- Adds users to supplementary groups  
+- Generates secure random passwords  
+-Creates /home/&lt;user&gt; with correct permissions  
+- Saves passwords securely  
+- Logs all operations  
+- Skips invalid/comment lines  
+- Handles existing users/groups safely  
 
 <hr/>
 
-<h1><b>📄 Input File Format (users.txt)</b></h1>
+<h1><b> Input File Format (users.txt)</b></h1>
 
 <pre>
 light; sudo,dev,www-data
-siyoni; sudo
-manoj; dev,www-data
+saideep; sudo
+rahul; dev,www-data
 </pre>
 
 <h2><b>Rules</b></h2>
@@ -44,7 +44,7 @@ manoj; dev,www-data
 
 <hr/>
 
-<h1><b>⚙️ How It Works (High-Level Logic)</b></h1>
+<h1><b> How It Works (High-Level Logic)</b></h1>
 
 1. Read file line-by-line  
 2. Skip empty/comment lines  
@@ -61,7 +61,7 @@ manoj; dev,www-data
 
 <hr/>
 
-<h1><b>🏃 Running the Script</b></h1>
+<h1><b> Running the Script</b></h1>
 
 <h2><b>Make executable</b></h2>
 <pre>chmod +x create_users.sh</pre>
@@ -71,18 +71,21 @@ manoj; dev,www-data
 
 <hr/>
 
-<h1><b>📁 Project Structure</b></h1>
+<h1><b> Project Structure</b></h1>
 
 <pre>
 linux-user-management/
 │── create_users.sh
 │── users.txt
 │── README.md
+│── user_management.log
+│── user_passwords.txt
 </pre>
+
 
 <hr/>
 
-<h1><b>📜 Generated Files</b></h1>
+<h1><b> Generated Files</b></h1>
 
 | Location | Description |
 |----------|-------------|
@@ -91,7 +94,7 @@ linux-user-management/
 
 <hr/>
 
-<h1><b>🔐 Security Considerations</b></h1>
+<h1><b> Security Considerations</b></h1>
 
 - Password file uses chmod 600  
 - No passwords printed  
@@ -102,7 +105,7 @@ linux-user-management/
 
 <hr/>
 
-<h1><b>🛠 Technologies Used</b></h1>
+<h1><b> Technologies Used</b></h1>
 
 - Bash / Shell Scripting  
 - Linux User Management  
@@ -111,7 +114,7 @@ linux-user-management/
 
 <hr/>
 
-<h1><b>📝 Example Log Output</b></h1>
+<h1><b> Example Log Output</b></h1>
 
 <pre>
 2025-11-13 10:28:11 | Created user: light
@@ -122,7 +125,9 @@ linux-user-management/
 
 <hr/>
 
-<h1><b>👨‍💻 Author</b></h1>
+<h1><b> Author</b></h1>
 
 <b>M SAIDEEP</b>  
 DevOps / SysOps Automation Practice
+
+
