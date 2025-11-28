@@ -49,14 +49,14 @@ siyoni; sudo
 manoj; dev,www-data
 ```
 
-### ✔ Rules:
+###  Rules:
 
 - Format: `username; group1,group2,group3`
-- **Whitespace is automatically ignored**
-- **Lines beginning with # are skipped**
-- **Groups are comma-separated**
-- **Each user gets a primary group with the same name as the username**
-- **One user per line**
+- Whitespace is automatically ignored
+- Lines beginning with # are skipped
+- Groups are comma-separated
+- Each user gets a primary group with the same name as the username
+- One user per line
 
 ---
 
@@ -75,15 +75,15 @@ Example:
 light; sudo,dev,www-data
 ```
 
-- Username → `light`  
-- Additional groups → `sudo dev www-data`  
-- Primary group → `light` (always created if missing)  
+- Username - `light`  
+- Additional groups - `sudo dev www-data`  
+- Primary group - `light` (always created if missing)  
 
 ---
 
 ### **3. Handle existing users and groups**
-- If group already exists → script logs & skips  
-- If user already exists → script logs & skips  
+- If group already exists - script logs & skips  
+- If user already exists - script logs & skips  
 - Missing groups are created automatically  
 
 ---
@@ -208,13 +208,13 @@ linux-user-management/
 │── create_users.sh
 │── users.txt
 │── README.md
-│── /var/log/user_management.log
-│── /var/secure/user_passwords.txt
+│── user_management.log
+│── user_passwords.txt
 ```
 
 ---
 
-# 📝 Example Log Output
+#  Example Log Output
 
 ```
 2025-11-13 10:28:11 | Processing user: light
@@ -267,4 +267,5 @@ Script will auto-create them.
 
 **Created by:** M SAIDEEP  
 GitHub Profile: **https://github.com/MALGIREDDY**
+
 
