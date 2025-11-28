@@ -1,7 +1,5 @@
 #!/bin/bash
-
 # User Management Automation Script
-
 INPUT_FILE="$1"
 LOG_FILE="/var/log/user_management.log"
 PASS_FILE="/var/secure/user_passwords.txt"
