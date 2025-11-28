@@ -1,177 +1,270 @@
-<h1><font color="blue"><b> Linux User Management Automation (Shell Script)</b></font></h1>
+# Linux User Management Automation (SysOps Challenge)
 
-This project automates onboarding of multiple users on a Linux server using a single shell script.  
-It is designed for **DevOps**, **SysOps**, **Cloud Engineers**, and **Linux Administrators** who want to automate repetitive user-creation work.
+This project provides a complete automation solution for onboarding multiple users on a Linux server using a single shell script: **create_users.sh**.
 
-This tool ensures:
+It is designed for **SysOps**, **DevOps**, **Cloud Engineers**, and **Linux Administrators** who want:
+
 - Faster onboarding  
 - Zero manual errors  
-- Better security practices  
-- Professional DevOps workflow  
+- Strict security  
+- Full logging & auditing  
+- Standards-based Linux user provisioning  
 
-<hr/>
+---
 
-<h1><font color="blue"><b> About This Project</b></font></h1>
+##  Purpose of the Script
 
-Managing large numbers of user accounts manually is time-consuming and error-prone.  
-This automation script provides a:
+Manual user creation is slow and prone to mistakes.  
+This automation script ensures a **secure, repeatable, and auditable** process for:
 
-- Standardized  
-- Repeatable  
-- Secure  
-- Auditable  
+- Creating users  
+- Creating required groups  
+- Creating primary group = username  
+- Setting up home directories  
+- Assigning correct permissions  
+- Generating secure passwords  
+- Logging all activities  
+- Storing credentials safely  
 
-workflow for Linux user provisioning.
+The script reads an input file containing:
 
-It reads data from a config file, creates users, groups, secure passwords, home directories, logs everything, and stores credentials safely.
+```
+username; group1,group2,group3
+```
 
-<hr/>
+It handles **existing users**, **whitespace**, **comments**, and **errors** gracefully — making it ideal for production SysOps workflows.
 
-<h1><font color="blue"><b> Features</b></font></h1>
+---
 
-- Creates users automatically  
-- Creates primary and secondary groups  
-- Generates secure random passwords  
--Creates /home/ directories  
-- Configures permissions (700)  
-- Logs all actions  
-- Stores passwords securely  
-- Detects existing users/groups  
-- Skips invalid lines  
-- Easy to maintain and extend  
+##  Input File Format (users.txt)
 
-<hr/>
+### Example:
 
-<h1><font color="blue"><b> Input File Format (users.txt)</b></font></h1>
-
-<pre>
+```
+# Admin users
 light; sudo,dev,www-data
-saideep; sudo
-rahul; dev,www-data
-</pre>
+siyoni; sudo
 
-<b>Rules:</b>  
-- Format → username; group1,group2  
-- Spaces are auto-ignored  
-- Lines beginning with # are skipped  
+# Developer
+manoj; dev,www-data
+```
 
-<hr/>
+### ✔ Rules:
 
-<h1><font color="blue"><b> How the Script Works</b></font></h1>
+- Format: `username; group1,group2,group3`
+- **Whitespace is automatically ignored**
+- **Lines beginning with # are skipped**
+- **Groups are comma-separated**
+- **Each user gets a primary group with the same name as the username**
+- **One user per line**
 
-<b>Workflow Overview:</b>
+---
 
-<b>Password Generation:</b>
+#  How the Script Works (Step-by-Step)
 
-<pre>openssl rand -base64 12</pre>
+### **1. Read input file line-by-line**
+- Skip empty lines  
+- Skip lines beginning with `#`  
+- Remove extra whitespace  
 
-<b>Security Best Practices:</b>
+### **2. Parse username and groups**
 
-- No hardcoded passwords  
-- Password file permissions: 600  
-- Home dir permissions: 700  
-- sudo required for privileged actions  
+Example:
 
-<hr/>
+```
+light; sudo,dev,www-data
+```
 
-##  Architecture Diagram
+- Username → `light`  
+- Additional groups → `sudo dev www-data`  
+- Primary group → `light` (always created if missing)  
+
+---
+
+### **3. Handle existing users and groups**
+- If group already exists → script logs & skips  
+- If user already exists → script logs & skips  
+- Missing groups are created automatically  
+
+---
+
+### **4. Create the user**
+User is created with:
+
+- **Primary group = username**  
+- **Secondary groups = from input**  
+- Home directory created at `/home/username` if missing  
+
+---
+
+### **5. Setup home directory**
+
+Permissions applied:
+
+- Owner: `username:username`
+- Directory permissions: `700`
+
+---
+
+### **6. Generate a secure random password**
+
+```
+openssl rand -base64 12
+```
+
+---
+
+### **7. Set the password for the user**
+
+Password applied immediately via:
+
+```
+chpasswd
+```
+
+---
+
+### **8. Store credentials securely**
+
+Stored in:
+
+```
+/var/secure/user_passwords.txt
+```
+
+File permission:
+
+```
+chmod 600
+```
+
+---
+
+### **9. Log all actions**
+
+Log file location:
+
+```
+/var/log/user_management.log
+```
+
+Log file permission:
+
+```
+chmod 600
+```
+
+The script logs:
+
+- User created  
+- Existing user skipped  
+- Groups created  
+- Groups added  
+- Home directory created  
+- Password generated  
+- Errors  
+- Invalid / ignored lines  
+
+---
+
+#  Architecture Workflow
 
 ```
 users.txt
    ↓
 create_users.sh
    ↓
-User Creation + Group Assignment
-   ↓
-Password Generation
+User + Group Creation
    ↓
 Home Directory Setup
    ↓
-Logs + Password Storage
-(user_management.log / user_passwords.txt)
+Password Generation
+   ↓
+Secure Storage + Logging
 ```
 
-<hr/>
+---
 
-<h1><font color="blue"><b> Running the Script</b></font></h1>
+#  How to Run the Script
 
-<h2><font color="blue"><b>1. Make executable</b></font></h2>
-<pre>chmod +x create_users.sh</pre>
+### **1. Make executable**
+```
+chmod +x create_users.sh
+```
 
-<h2><font color="blue"><b>2. Run with sudo</b></font></h2>
-<pre>sudo bash create_users.sh users.txt</pre>
+### **2. Run with sudo**
+```
+sudo ./create_users.sh users.txt
+```
 
-<hr/>
+Root/sudo access is required because the script modifies system users, groups, directories, and passwords.
 
-<h1><font color="blue"><b> Project Structure</b></font></h1>
+---
 
-<pre>
+#  Project Structure
+
+```
 linux-user-management/
 │── create_users.sh
 │── users.txt
 │── README.md
-│── user_management.log
-│── user_passwords.txt
-</pre>
+│── /var/log/user_management.log
+│── /var/secure/user_passwords.txt
+```
 
-<hr/>
+---
 
-<h1><font color="blue"><b> Example Log Output</b></font></h1>
+# 📝 Example Log Output
 
-<pre>
+```
+2025-11-13 10:28:11 | Processing user: light
+2025-11-13 10:28:11 | Created primary group: light
 2025-11-13 10:28:11 | Created user: light
 2025-11-13 10:28:11 | Added to groups: sudo,dev,www-data
-2025-11-13 10:28:11 | Password generated and stored securely
 2025-11-13 10:28:11 | Home directory created: /home/light
-</pre>
+2025-11-13 10:28:11 | Generated random password for user
+2025-11-13 10:28:11 | Stored credentials securely
+```
 
-<hr/>
+---
 
-<h1><font color="blue"><b> Prerequisites</b></font></h1>
+#  Security Considerations
 
-- Linux OS (Ubuntu, Debian, CentOS, WSL, etc.)
-- sudo access  
-- openssl installed (`sudo apt install openssl`)  
-- Basic shell scripting knowledge (optional)
+- No hardcoded passwords  
+- Passwords stored only in `/var/secure/user_passwords.txt`  
+- Password file permissions must be `600`  
+- Log file contains sensitive data → set to `600`  
+- Home directory permissions → `700`  
+- Script fully sanitizes whitespace and CRLF characters  
+- Root privileges required  
+- Prevents accidental misconfigurations by checking existing users/groups  
 
-<hr/>
+---
 
-<h1><font color="blue"><b> Troubleshooting</b></font></h1>
+#  Troubleshooting
 
-<b>Permission Denied?</b>  
+### **Permission denied?**
 Run with sudo:
+```
+sudo ./create_users.sh users.txt
+```
 
-<pre>sudo bash create_users.sh users.txt</pre>
+### **openssl missing?**
+```
+sudo apt install openssl
+```
 
-<b>openssl not found?</b>  
-<pre>sudo apt install openssl</pre>
-
-<b>Log or secure folders missing?</b>  
+### **Log or secure folder missing?**
 Script will auto-create them.
 
-<hr/>
+### **Wrong formatting in users.txt?**
+- Use correct `username; group1,group2` format  
+- Remove extra semicolons or invalid characters  
 
-<h1><font color="blue"><b> Contributing</b></font></h1>
+--- 
 
-Feel free to open issues, suggest improvements, or submit pull requests.
+#  Author
 
-<hr/>
-
-<hr/>
-
-<h1><font color="blue"><b> Author</b></font></h1>
-
-<b>Created by: M SAIDEEP</b>
-
-User Management Automation (SysOps Challenge)
-
-GitHub Profile: https://github.com/MALGIREDDY
-
-
-
-
-
-
-
-
+**Created by:** M SAIDEEP  
+GitHub Profile: **https://github.com/MALGIREDDY**
 
